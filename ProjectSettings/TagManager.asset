@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Path
+    uniqueID: 1598286341
+    locked: 0
+  - name: GameObjects
+    uniqueID: 530711131
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: HUD
+    uniqueID: 2643994303
     locked: 0
