@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Path
   - Bowl
+  - Money
+  - ScarecrowButton
+  - SkeletonButton
+  - Enemy
+  - SoundPlayer
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,11 @@ public class EnemyController : MonoBehaviour
     bool carrying = false;
     Transform pathContainer;
     BowlController candyBowl;
+    public AudioClip deathSound;
+    public AudioClip hitSound;
+    AudioSource audioPlayer;
+    public AudioClip endSound;
+    PlacementController player;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,10 @@ public class EnemyController : MonoBehaviour
 
         // Get bowl object
         candyBowl = GameObject.FindGameObjectWithTag("Bowl").GetComponent<BowlController>();
+
+        audioPlayer = GameObject.FindGameObjectWithTag("SoundPlayer").GetComponent<AudioSource>();
+
+        player =  GameObject.FindGameObjectWithTag("Player").GetComponent<PlacementController>();
 
         // Start following the path
         StartCoroutine(FollowPath(waypoints));
@@ -51,7 +60,7 @@ public class EnemyController : MonoBehaviour
                 if (targetWaypointIndex > waypoints.Length - 1) {
                     targetWaypointIndex = waypoints.Length - 1;
                 }
-                
+
                 // Destroy if at the first waypoint
                 if (targetWaypointIndex == 0) {
                     Destroy(gameObject);
@@ -65,7 +74,7 @@ public class EnemyController : MonoBehaviour
                         // Loose condition
                         print("Game over, all your candy is belong to us.");
                         candyBowl.Drop();
-                        // idk restart menu???
+                        audioPlayer.PlayOneShot(endSound);
                     }
                 }
                 // Final target logic
@@ -95,8 +104,13 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void OnTriggerEnter2D(Collider2D triggerCollider) {
+        audioPlayer.PlayOneShot(deathSound);
+        Destroy(triggerCollider.gameObject);
+        if (carrying) {
+            candyBowl.Drop();
+        }
+        player.money += 5;
+        Destroy(gameObject);
     }
 }
