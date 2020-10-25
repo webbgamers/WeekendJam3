@@ -38,8 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Path
+  - name: Path Tiles
     uniqueID: 1598286341
+    locked: 0
+  - name: Overlay Tiles
+    uniqueID: 1519499441
     locked: 0
   - name: GameObjects
     uniqueID: 530711131
