@@ -20,12 +20,16 @@ public class BowlController : MonoBehaviour
     }
 
     public bool Carry(GameObject newCarrier) {
-        if (carrier == null) {
+        if (carrier != null) {
             return false;
         }
         else {
             carrier = newCarrier;
             return true;
         }
+    }
+
+    public void Drop() {
+        carrier = null;
     }
 }
